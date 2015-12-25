@@ -1,5 +1,6 @@
 # Mediumize
 
+[![Gem Version](https://img.shields.io/gem/v/mediumize.svg)](https://rubygems.org/gems/mediumize) 
 [![Build Status](https://travis-ci.org/jondot/mediumize.svg?branch=master)](https://travis-ci.org/jondot/mediumize)
 
 Automatically post (and cross-post) your markdown style blog posts to your [Medium](http://medium.com) account from [Jekyll](http://jekyllrb.com/), [Middleman](middlemanapp.com), [Hugo](http://gohugo.io/) and others.
