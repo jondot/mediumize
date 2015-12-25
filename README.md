@@ -1,5 +1,7 @@
 # Mediumize
 
+[![Build Status](https://travis-ci.org/jondot/mediumize.svg?branch=master)](https://travis-ci.org/jondot/mediumize)
+
 Automatically post (and cross-post) your markdown style blog posts to your [Medium](medium.com) account from [Jekyll](http://jekyllrb.com/), [Middleman](middlemanapp.com), [Hugo](http://gohugo.io/) and others.
 
 Mediumize will only publish drafts, and never publicly.
