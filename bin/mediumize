@@ -3,6 +3,7 @@
 require "bundler/setup"
 require "mediumize"
 require "slop"
+require "colorize"
 
 def bail(err, opts)
   puts err
@@ -13,8 +14,10 @@ end
 
 begin
   o = Slop::Options.new
-  o.bool '-m', '--frontmatter', 'a hostname', default: true
-  o.string '-t', '--token', 'your Medium integration token'
+  o.bool '-m', '--frontmatter', '(default: true) Use if files contain a frontmatter', default: true
+  o.bool '-h', '--headline', '(default: true) Use if you want to insert a main headline in addition to a title', default: true
+  o.string '-t', '--token', 'Your Medium integration token'
+  o.string '-b', '--base_url', 'Your blog base url, for relative images and resources. e.g. http://acme.org/blog'
   o.on '--version', 'print the version' do
     puts Mediumize::VERSION
     exit
@@ -29,9 +32,12 @@ begin
     bail "Error: please provide a token", opts
   end
 
+  puts opts.to_h
   p = Mediumize::Publisher.new(opts.to_h)
   opts.arguments.each do |arg|
-    p.publish(arg)
+    res = p.publish(arg)
+    badge = "✔ draft ".colorize(:green)
+    puts "#{badge} #{res[:url]}"
   end
 
 rescue

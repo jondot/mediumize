@@ -29,7 +29,7 @@ module Mediumize
   class Publisher
     def initialize(opts={})
       @opts = opts
-      @renderer = Mediumize::Renderer.new(opts.slice(:frontmatter))
+      @renderer = Mediumize::Renderer.new(opts)
       @client = Medium::Client.new(:integration_token => opts[:token])
     end
 

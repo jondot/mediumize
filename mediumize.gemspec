@@ -22,8 +22,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'nokogiri', '~> 1.6.7'
   spec.add_dependency 'github-markup', '~> 1.4.0'
   spec.add_dependency 'kramdown', '~> 1.9.0'
-  spec.add_dependency 'medium-sdk-ruby'
+  spec.add_dependency 'medium-sdk-ruby', '~> 1.0.1'
   spec.add_dependency 'slop', '~> 4.2.1'
+  spec.add_dependency 'colorize', '~> 0.7.7'
 
   spec.add_development_dependency "bundler", "~> 1.10"
   spec.add_development_dependency "rake", "~> 10.0"

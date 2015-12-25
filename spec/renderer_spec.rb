@@ -50,5 +50,16 @@ content
     EOF
   end
   
+  it 'should insert a headline' do
+    r = Mediumize::Renderer.new(:headline => true, :frontmatter => true)
+    result = r.render(frontmatter_post, "foo.md")
+    result[:title].must_equal("post title")
+    result[:content_format].must_equal("html")
+    result[:content].must_equal(<<-EOF)
+<h1>post title</h1>
+<p>content</p>
+    EOF
+  end
+  
 end
 

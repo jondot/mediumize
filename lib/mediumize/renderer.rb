@@ -26,6 +26,10 @@ module Mediumize
       @normalizers.each{|n| doc = n.normalize(doc) }
 
       doc.title = opts[:title] if opts[:title]
+      if(@opts[:headline])
+        doc.at('body').children.first.add_previous_sibling("<h1>#{doc.title}</h1")
+      end
+
       {
          :title => doc.title,
          :content => doc.at('body').children.to_html,
