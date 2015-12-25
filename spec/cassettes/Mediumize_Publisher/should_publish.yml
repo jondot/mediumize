@@ -1,0 +1,116 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.medium.com/v1/me
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Hurley v0.2
+      Authorization:
+      - Bearer **secret***
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - cloudflare-nginx
+      Date:
+      - Fri, 25 Dec 2015 16:26:07 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Powered-By:
+      - Soylent
+      Access-Control-Allow-Origin:
+      - "*"
+      Link:
+      - <https://medium.com/humans.txt>; rel="humans"
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Expires:
+      - Thu, 09 Sep 1999 09:09:09 GMT
+      Pragma:
+      - no-cache
+      Tk:
+      - T
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":{"id":"***secret***","username":"jondot","name":"Dotan
+        Nahum","url":"https://medium.com/@jondot","imageUrl":"https://cdn-images-1.medium.com/fit/c/200/200/1*qyTVPi5bg0s9pbFf_CBnWg.png"}}'
+    http_version: 
+  recorded_at: Fri, 25 Dec 2015 16:26:06 GMT
+- request:
+    method: post
+    uri: https://api.medium.com/v1/users/***secret***/posts
+    body:
+      encoding: ASCII-8BIT
+      string: title=a%20frontmatter%20post&contentFormat=html&content=%3Chr%3E%0A%3Cp%3Etitle%3A%20a%20frontmatter%20post%0A%E2%80%94%3C%2Fp%3E%0A%0A%3Cp%3EThis%20is%20a%20frontmatter%20with%20markdown%0A%2A%20one%0A%2A%20two%3C%2Fp%3E%0A%0A&publishStatus=draft
+    headers:
+      User-Agent:
+      - Hurley v0.2
+      Authorization:
+      - Bearer ***secret***
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Content-Length:
+      - '247'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - cloudflare-nginx
+      Date:
+      - Fri, 25 Dec 2015 16:26:09 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '324'
+      Connection:
+      - keep-alive
+      X-Powered-By:
+      - Soylent
+      Access-Control-Allow-Origin:
+      - "*"
+      Link:
+      - <https://medium.com/humans.txt>; rel="humans"
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Expires:
+      - Thu, 09 Sep 1999 09:09:09 GMT
+      Pragma:
+      - no-cache
+      Tk:
+      - T
+      Location:
+      - https://medium.com/@jondot/**id**
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"data":{"id":"**id**","title":"a frontmatter post","authorId":"***author***","url":"https://medium.com/@jondot/**id**","canonicalUrl":"","publishStatus":"draft","license":"all-rights-reserved","licenseUrl":"https://medium.com/policy/9db0094a1e0f","tags":[]}}'
+    http_version: 
+  recorded_at: Fri, 25 Dec 2015 16:26:09 GMT
+recorded_with: VCR 3.0.1

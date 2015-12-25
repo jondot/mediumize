@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "mediumize"
+require "slop"
+
+def bail(err, opts)
+  puts err
+  puts
+  puts opts
+  exit(1)
+end
+
+begin
+  o = Slop::Options.new
+  o.bool '-m', '--frontmatter', 'a hostname', default: true
+  o.string '-t', '--token', 'your Medium integration token'
+  o.on '--version', 'print the version' do
+    puts Mediumize::VERSION
+    exit
+  end
+  o.on '--help' do
+    puts o
+    exit
+  end
+  opts = Slop::Parser.new(o).parse(ARGV)
+
+  unless opts[:token]
+    bail "Error: please provide a token", opts
+  end
+
+  p = Mediumize::Publisher.new(opts.to_h)
+  opts.arguments.each do |arg|
+    p.publish(arg)
+  end
+
+rescue
+  bail "Error: #{$!}", o
+end
