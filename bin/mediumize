@@ -31,7 +31,6 @@ begin
     bail "Error: please provide a token", opts
   end
 
-  puts opts.to_h
   p = Mediumize::Publisher.new(opts.to_h)
   opts.arguments.each do |arg|
     res = p.publish(arg)
