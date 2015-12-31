@@ -8,6 +8,10 @@ VCR.configure do |c|
 end
 MinitestVcr::Spec.configure!
 
+def fixture_content(file)
+  File.read(fixture(file))
+end
+
 def fixture(file)
   File.expand_path("./fixtures/#{file}", File.dirname(__FILE__))
 end

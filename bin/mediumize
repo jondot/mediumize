@@ -15,6 +15,7 @@ begin
   o = Slop::Options.new
   o.bool '-m', '--frontmatter', '(default: true) Use if files contain a frontmatter', default: true
   o.bool '-h', '--headline', '(default: true) Use if you want to insert a main headline in addition to a title', default: true
+  o.bool '-d', '--dryrun', '(default: false) Perform a dry run (publish to STDOUT, and not to Medium)', default: false
   o.string '-t', '--token', 'Your Medium integration token'
   o.string '-b', '--base_url', 'Your blog base url, for relative images and resources. e.g. http://acme.org/blog'
   o.on '--version', 'print the version' do
@@ -27,11 +28,16 @@ begin
   end
   opts = Slop::Parser.new(o).parse(ARGV)
 
-  unless opts[:token]
+  if !opts[:token] && !opts[:dryrun]
     bail "Error: please provide a token", opts
   end
 
-  p = Mediumize::Publisher.new(opts.to_h)
+  p = if opts[:dryrun]
+        Mediumize::StdoutPublisher.new(opts.to_h)
+      else
+        Mediumize::MediumPublisher.new(opts.to_h)
+      end
+    
   opts.arguments.each do |arg|
     res = p.publish(arg)
     badge = "✔ draft ".colorize(:green)

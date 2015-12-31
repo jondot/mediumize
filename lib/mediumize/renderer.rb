@@ -1,5 +1,8 @@
-require "github/markup"
 require "mediumize/frontmatter"
+require "mediumize/markdown"
+require "mediumize/normalizers/links"
+require "mediumize/normalizers/title"
+
 require "nokogiri"
 
 module Mediumize
@@ -12,6 +15,7 @@ module Mediumize
       if @opts[:base_url]
         @normalizers << Normalizers::Links.new(@opts[:base_url])
       end
+      @markdown = Markdown.new
     end
 
     def render(content, file, opts={})
@@ -20,7 +24,7 @@ module Mediumize
         opts[:title] ||= meta["title"]
       end
 
-      markup = GitHub::Markup.render(file, content)
+      markup = @markdown.render(content)
       doc = Nokogiri::HTML(markup)
 
       @normalizers.each{|n| doc = n.normalize(doc) }
